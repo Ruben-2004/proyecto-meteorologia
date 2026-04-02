@@ -1,0 +1,43 @@
+[project]
+name = "proyecto-meteorologia"
+version = "0.0.1"
+description = "Análisis de datos meteorológicos — Big Data"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Ruben Torres" }]
+
+dependencies = [
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "matplotlib>=3.7",
+    "seaborn>=0.12",
+    "requests>=2.31",
+    # add more as your analysis requires:
+    # "polars>=1.0",
+    # "dask>=2024.1",
+    # "meteostat>=1.6",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.8",
+    "mkdocs>=1.6",
+    "mkdocs-material>=9.5",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+# E/W: pycodestyle  F: pyflakes  I: isort  UP: pyupgrade
+select = ["E", "F", "W", "I", "UP"]
+ignore = ["E501"]  # line-too-long — handled by the formatter
+
+[tool.ruff.format]
+quote-style = "double"
