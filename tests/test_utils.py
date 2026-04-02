@@ -1,6 +1,5 @@
-import pytest
-import pandas as pd
 from weather.utils import celsius_to_fahrenheit
+
 
 class TestCelsiusToFahrenheit:
     def test_freezing_point(self):
