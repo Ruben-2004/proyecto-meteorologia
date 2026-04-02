@@ -1,0 +1,43 @@
+site_name: Análisis de Datos Meteorológicos
+site_description: Proyecto final Big Data — Análisis de datos meteorológicos
+site_author: Ruben Torres
+repo_url: https://github.com/Ruben-2004/proyecto-meteorologia
+repo_name: proyecto-meteorologia
+
+theme:
+  name: material
+  language: es
+  palette:
+    - scheme: default
+      primary: blue
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - content.code.copy
+    - navigation.indexes
+    - navigation.top
+
+nav:
+  - Home: index.md
+  - Analysis: analysis.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
