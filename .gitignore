@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+.uv/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Data files — never commit raw data
+data/*
+!data/.gitkeep
+*.csv
+*.parquet
+*.nc
+*.grib
+*.grib2
+*.h5
+*.hdf5
+
+# Secrets & environment variables
+.env
+.env.*
+secrets.json
+credentials.json
+
+# MkDocs build output
+site/
+
+# Coverage
+.coverage
+coverage.xml
+htmlcov/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# macOS
+.DS_Store
+
+# Ruff cache
+.ruff_cache/
