@@ -7,7 +7,7 @@
 [![Coverage](https://codecov.io/gh/Ruben-2004/proyecto-meteorologia/graph/badge.svg)](https://codecov.io/gh/Ruben-2004/proyecto-meteorologia)
 [![Version](https://img.shields.io/github/v/release/Ruben-2004/proyecto-meteorologia)](https://github.com/Ruben-2004/proyecto-meteorologia/releases)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
-[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubRuben-2004content.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 ---
 
