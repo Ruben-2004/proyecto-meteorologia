@@ -3,7 +3,7 @@ name = "proyecto-meteorologia"
 version = "0.0.1"
 description = "Análisis de datos meteorológicos — Big Data"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 authors = [{ name = "Ruben Torres" }]
 
 dependencies = [
