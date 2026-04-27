@@ -27,11 +27,9 @@ def calcular_uhi_pl(urb: pl.DataFrame, rur: pl.DataFrame) -> pl.DataFrame:
     df = urb.join(rur, on="time", how="inner")
 
     # Calcular UHI
-    df = df.with_columns(
-        (pl.col("temp_urb") - pl.col("temp_rur")).alias("uhi")
-    )
+    df = df.with_columns((pl.col("temp_urb") - pl.col("temp_rur")).alias("uhi"))
 
-    df = df.drop(['temp_urb', 'temp_rur'])
+    df = df.drop(["temp_urb", "temp_rur"])
 
     # Ordenar por tiempo (por seguridad)
     df = df.sort("time")
@@ -49,16 +47,18 @@ def resumen_completo_uhi(df: pl.DataFrame) -> dict:
     uhi_medio = df.select(pl.col("uhi").mean()).item()
 
     # UHI día (10-18)
-    uhi_dia = df.filter(
-        (pl.col("time").dt.hour() >= 10) &
-        (pl.col("time").dt.hour() <= 18)
-    ).select(pl.col("uhi").mean()).item()
+    uhi_dia = (
+        df.filter((pl.col("time").dt.hour() >= 10) & (pl.col("time").dt.hour() <= 18))
+        .select(pl.col("uhi").mean())
+        .item()
+    )
 
     # UHI noche (22-06)
-    uhi_noche = df.filter(
-        (pl.col("time").dt.hour() >= 22) |
-        (pl.col("time").dt.hour() <= 6)
-    ).select(pl.col("uhi").mean()).item()
+    uhi_noche = (
+        df.filter((pl.col("time").dt.hour() >= 22) | (pl.col("time").dt.hour() <= 6))
+        .select(pl.col("uhi").mean())
+        .item()
+    )
 
     # UHI por mes
     uhi_mes = (
@@ -72,5 +72,5 @@ def resumen_completo_uhi(df: pl.DataFrame) -> dict:
         "uhi_medio": uhi_medio,
         "uhi_dia": uhi_dia,
         "uhi_noche": uhi_noche,
-        "uhi_mes": uhi_mes
+        "uhi_mes": uhi_mes,
     }
