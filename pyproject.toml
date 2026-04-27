@@ -1,6 +1,6 @@
 [project]
 name = "proyecto-meteorologia"
-version = "0.0.3"
+version = "0.0.4"
 description = "Análisis de datos meteorológicos — Big Data"
 readme = "README.md"
 requires-python = ">=3.11"
