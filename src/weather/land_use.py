@@ -1,6 +1,7 @@
 import geopandas as gpd
 import pandas as pd
 
+
 def create_buffers(buffers: gpd.GeoDataFrame, radius: int = 5000) -> gpd.GeoDataFrame:
     buffers["geometry"] = buffers.buffer(5000)
     return buffers
@@ -20,7 +21,7 @@ def classify_land(code: str) -> str:
         return "vegetacion"
     else:
         return "otros"
-    
+
 def land_use_percentage(gdf: gpd.GeoDataFrame) -> pd.DataFrame:
     area_cat = (
         gdf

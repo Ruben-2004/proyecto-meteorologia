@@ -1,10 +1,11 @@
-from uhi_calculation import resumen_completo_uhi
+
 import pandas as pd
 import polars as pl
-from typing import List
 from meteostat import Point
+from uhi_calculation import resumen_completo_uhi
 
-def build_final_df(uhis: List[pl.DataFrame], ciudades: List[str], poblaciones: List[int], altitud_urb: List[int], altitud_rur: List[int], puntos: List[Point], urbanas_pl: List[pl.DataFrame], rurales_pl: List[pl.DataFrame]) -> pd.DataFrame:
+
+def build_final_df(uhis: list[pl.DataFrame], ciudades: list[str], poblaciones: list[int], altitud_urb: list[int], altitud_rur: list[int], puntos: list[Point], urbanas_pl: list[pl.DataFrame], rurales_pl: list[pl.DataFrame]) -> pd.DataFrame:
     resultados = []
     for uhi, ciudad, poblacion, alt_urb, alt_rur, point, temp_urb, temp_rur in zip(uhis, ciudades, poblaciones, altitud_urb, altitud_rur, puntos, urbanas_pl, rurales_pl):
         res = resumen_completo_uhi(uhi)
@@ -21,5 +22,5 @@ def build_final_df(uhis: List[pl.DataFrame], ciudades: List[str], poblaciones: L
         'temp_urb': temp_urb.mean()['temp'][0],
         'temp_rur': temp_rur.mean()['temp'][0]
     })
-        
+
     return pd.DataFrame(resultados)

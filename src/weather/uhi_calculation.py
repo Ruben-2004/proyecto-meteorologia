@@ -1,5 +1,6 @@
 import polars as pl
 
+
 def calcular_uhi_pl(urb: pl.DataFrame, rur: pl.DataFrame) -> pl.DataFrame:
     """
     Calcula el Urban Heat Island (UHI) alineando dos series temporales.

@@ -1,16 +1,17 @@
 from datetime import datetime
-from typing import List, Tuple
-import pandas as pd
-import meteostat as ms
+
 import geopandas as gpd
+import meteostat as ms
+import pandas as pd
 from pyproj import Transformer
+
 ms.config.block_large_requests = False
 
-def get_meteostat(start: datetime = datetime(2010, 1, 1), end: datetime = datetime(2022, 12, 31, 23, 59)) -> Tuple[List[pd.Series]]:
-    
+def get_meteostat(start: datetime = datetime(2010, 1, 1), end: datetime = datetime(2022, 12, 31, 23, 59)) -> tuple[list[pd.Series]]:
+
     urbanas = []
     rurales = []
-    
+
     id_urb = ['08221', '08181', '08391', '08160', '08025', '08001', '08023', '60025']
     id_rur = ['08227', 'LELL0', '08397', 'LEHC0', '08080', '08002', '08021', '60015']
 
