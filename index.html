@@ -329,6 +329,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#study-area" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌍 Study Area
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#project-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -340,10 +351,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#technologies" class="md-nav__link">
+  <a href="#technologies-used" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🚀 Technologies
+        ⚙️ Technologies Used
       
     </span>
   </a>
@@ -351,10 +362,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#results-overview" class="md-nav__link">
+  <a href="#key-insights" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📊 Results Overview
+        📊 Key Insights
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 Documentation
       
     </span>
   </a>
@@ -488,6 +510,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#study-area" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌍 Study Area
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#project-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -499,10 +532,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#technologies" class="md-nav__link">
+  <a href="#technologies-used" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🚀 Technologies
+        ⚙️ Technologies Used
       
     </span>
   </a>
@@ -510,10 +543,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#results-overview" class="md-nav__link">
+  <a href="#key-insights" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📊 Results Overview
+        📊 Key Insights
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 Documentation
       
     </span>
   </a>
@@ -541,35 +585,61 @@
 
 
 <h1 id="urban-heat-island-analysis-in-spain">🌡️ Urban Heat Island Analysis in Spain<a class="headerlink" href="#urban-heat-island-analysis-in-spain" title="Permanent link">&para;</a></h1>
-<p>This project analyses the <strong>Urban Heat Island (UHI)</strong> effect in several Spanish cities using meteorological data and land use information.</p>
+<p>This project investigates the <strong>Urban Heat Island (UHI)</strong> effect across several Spanish cities by combining meteorological data with land use information. The UHI phenomenon refers to the temperature difference between urban and rural environments, typically caused by human activity, artificial surfaces, and reduced vegetation.</p>
 <h2 id="objectives">📌 Objectives<a class="headerlink" href="#objectives" title="Permanent link">&para;</a></h2>
+<p>The main objectives of this project are:</p>
 <ul>
-<li>Compute UHI from urban and rural stations</li>
-<li>Analyse differences between day and night</li>
-<li>Study the influence of land use (CORINE)</li>
-<li>Build regression models to explain UHI</li>
+<li>To compute the Urban Heat Island (UHI) intensity using hourly temperature data</li>
+<li>To compare UHI behaviour during daytime and nighttime</li>
+<li>To analyse the relationship between land use and temperature differences</li>
+<li>To evaluate the impact of urbanization and vegetation on UHI</li>
+<li>To build statistical models that explain UHI variability across cities</li>
 </ul>
+<h2 id="study-area">🌍 Study Area<a class="headerlink" href="#study-area" title="Permanent link">&para;</a></h2>
+<p>The analysis focuses on a selection of Spanish cities representing different climatic and geographical conditions, including:</p>
+<ul>
+<li>Madrid</li>
+<li>Barcelona</li>
+<li>Sevilla</li>
+<li>Zaragoza</li>
+<li>Bilbao</li>
+<li>A Coruña</li>
+<li>Santander</li>
+<li>Tenerife</li>
+</ul>
+<p>This diversity allows for a more comprehensive understanding of how UHI behaves under different environmental conditions.</p>
 <h2 id="project-structure">🗂️ Project Structure<a class="headerlink" href="#project-structure" title="Permanent link">&para;</a></h2>
+<p>The repository is organised as follows:</p>
 <ul>
-<li><code>src/</code>: source code</li>
-<li><code>tests/</code>: unit tests</li>
-<li><code>docs/</code>: documentation</li>
+<li><code>src/</code>: Core implementation of the project, including data processing, UHI computation, modeling, and visualization</li>
+<li><code>tests/</code>: Unit tests ensuring correctness and robustness of the code</li>
+<li><code>docs/</code>: Project documentation built using MkDocs</li>
+<li><code>data/</code>: Data files used in the analysis</li>
 </ul>
-<h2 id="technologies">🚀 Technologies<a class="headerlink" href="#technologies" title="Permanent link">&para;</a></h2>
+<h2 id="technologies-used">⚙️ Technologies Used<a class="headerlink" href="#technologies-used" title="Permanent link">&para;</a></h2>
+<p>This project relies on several modern Python tools:</p>
 <ul>
-<li>Python</li>
-<li>Polars / Pandas</li>
-<li>GeoPandas</li>
-<li>Scikit-learn</li>
-<li>Meteostat</li>
+<li><strong>Pandas / Polars</strong> for data manipulation</li>
+<li><strong>GeoPandas</strong> for spatial analysis</li>
+<li><strong>Meteostat</strong> for meteorological data retrieval</li>
+<li><strong>Scikit-learn</strong> for regression modeling</li>
+<li><strong>Matplotlib / Seaborn</strong> for visualization</li>
 </ul>
-<h2 id="results-overview">📊 Results Overview<a class="headerlink" href="#results-overview" title="Permanent link">&para;</a></h2>
+<h2 id="key-insights">📊 Key Insights<a class="headerlink" href="#key-insights" title="Permanent link">&para;</a></h2>
+<p>Preliminary results suggest that:</p>
 <ul>
-<li>UHI is generally higher at night</li>
-<li>Urban areas show stronger heat retention</li>
-<li>Vegetation reduces UHI</li>
+<li>UHI is consistently positive across cities</li>
+<li>The effect is stronger during nighttime due to heat retention</li>
+<li>Urban areas significantly increase local temperatures</li>
+<li>Vegetation plays a mitigating role in reducing UHI intensity</li>
 </ul>
-<p>👉 See <a href="analysis/">Analysis</a> for more details.</p>
+<h2 id="documentation">📚 Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
+<p>For a detailed explanation of the methodology and results:</p>
+<ul>
+<li>👉 <a href="methodology/">Methodology</a></li>
+<li>👉 <a href="analysis/">Analysis</a></li>
+<li>👉 <a href="results/">Results</a></li>
+</ul>
 
 
 

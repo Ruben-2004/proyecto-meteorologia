@@ -382,13 +382,41 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Data Sources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#meteorological-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Meteorological Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#land-use-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Land Use Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#preprocessing" class="md-nav__link">
+  <a href="#data-preprocessing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Preprocessing
+        Data Preprocessing
       
     </span>
   </a>
@@ -407,10 +435,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#land-use" class="md-nav__link">
+  <a href="#spatial-analysis" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Land Use
+        Spatial Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feature Engineering
       
     </span>
   </a>
@@ -422,6 +461,45 @@
     <span class="md-ellipsis">
       
         Modeling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modeling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linear-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linear Regression
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ridge-and-lasso-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ridge and Lasso Regression
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evaluation
       
     </span>
   </a>
@@ -498,13 +576,41 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Data Sources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#meteorological-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Meteorological Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#land-use-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Land Use Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#preprocessing" class="md-nav__link">
+  <a href="#data-preprocessing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Preprocessing
+        Data Preprocessing
       
     </span>
   </a>
@@ -523,10 +629,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#land-use" class="md-nav__link">
+  <a href="#spatial-analysis" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Land Use
+        Spatial Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feature Engineering
       
     </span>
   </a>
@@ -538,6 +655,45 @@
     <span class="md-ellipsis">
       
         Modeling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modeling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linear-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linear Regression
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ridge-and-lasso-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ridge and Lasso Regression
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evaluation
       
     </span>
   </a>
@@ -566,41 +722,84 @@
 
 <h1 id="methodology">🔬 Methodology<a class="headerlink" href="#methodology" title="Permanent link">&para;</a></h1>
 <h2 id="data-sources">Data Sources<a class="headerlink" href="#data-sources" title="Permanent link">&para;</a></h2>
+<p>Two main data sources were used:</p>
+<h3 id="meteorological-data">Meteorological Data<a class="headerlink" href="#meteorological-data" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Meteostat: hourly temperature data</li>
-<li>CORINE Land Cover: land use</li>
+<li>Source: Meteostat</li>
+<li>Type: Hourly temperature data</li>
+<li>Variables: Temperature (°C)</li>
+<li>Stations: Urban and rural locations for each city</li>
 </ul>
-<h2 id="preprocessing">Preprocessing<a class="headerlink" href="#preprocessing" title="Permanent link">&para;</a></h2>
+<h3 id="land-use-data">Land Use Data<a class="headerlink" href="#land-use-data" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Missing values handled</li>
-<li>Outliers removed</li>
-<li>Data converted to Polars</li>
+<li>Source: CORINE Land Cover</li>
+<li>Resolution: European-scale land classification</li>
+<li>Categories: Urban, vegetation, agriculture, etc.</li>
 </ul>
+<hr />
+<h2 id="data-preprocessing">Data Preprocessing<a class="headerlink" href="#data-preprocessing" title="Permanent link">&para;</a></h2>
+<p>The raw data underwent several preprocessing steps:</p>
+<ul>
+<li>Removal of missing values (NaNs)</li>
+<li>Interpolation of small gaps</li>
+<li>Outlier detection and filtering</li>
+<li>Conversion to efficient data structures (Polars)</li>
+</ul>
+<p>This ensures consistency and reliability of the analysis.</p>
+<hr />
 <h2 id="uhi-calculation">UHI Calculation<a class="headerlink" href="#uhi-calculation" title="Permanent link">&para;</a></h2>
-<p>UHI is computed hourly and aggregated:</p>
+<p>The UHI was computed as:</p>
+<p>UHI = T_urban − T_rural</p>
+<p>For each city:</p>
 <ul>
-<li>Mean</li>
-<li>Daytime</li>
-<li>Nighttime</li>
+<li>Hourly UHI values were calculated</li>
+<li>Aggregated metrics were derived:</li>
+<li>Mean UHI</li>
+<li>Daytime UHI</li>
+<li>Nighttime UHI</li>
 </ul>
-<h2 id="land-use">Land Use<a class="headerlink" href="#land-use" title="Permanent link">&para;</a></h2>
+<hr />
+<h2 id="spatial-analysis">Spatial Analysis<a class="headerlink" href="#spatial-analysis" title="Permanent link">&para;</a></h2>
+<p>To analyse land use:</p>
+<ol>
+<li>Buffers of 5 km were created around each station</li>
+<li>These buffers were intersected with CORINE polygons</li>
+<li>The proportion of each land use type was computed</li>
+</ol>
+<p>This provides a quantitative measure of the environment surrounding each station.</p>
+<hr />
+<h2 id="feature-engineering">Feature Engineering<a class="headerlink" href="#feature-engineering" title="Permanent link">&para;</a></h2>
+<p>The final dataset includes:</p>
 <ul>
-<li>Buffers of 5 km around stations</li>
-<li>Spatial intersection with CORINE</li>
-<li>Percentage of land types computed</li>
-</ul>
-<h2 id="modeling">Modeling<a class="headerlink" href="#modeling" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Linear Regression</li>
-<li>Ridge Regression</li>
-</ul>
-<p>Variables used:</p>
-<ul>
-<li>% urban</li>
+<li>UHI metrics</li>
+<li>% urban land</li>
 <li>% vegetation</li>
-<li>population</li>
-<li>altitude difference</li>
+<li>Population</li>
+<li>Altitude difference</li>
+<li>Geographic coordinates</li>
+<li>Mean temperature</li>
 </ul>
+<hr />
+<h2 id="modeling">Modeling<a class="headerlink" href="#modeling" title="Permanent link">&para;</a></h2>
+<p>Two regression models were used:</p>
+<h3 id="linear-regression">Linear Regression<a class="headerlink" href="#linear-regression" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Interpretable coefficients</li>
+<li>Baseline model</li>
+</ul>
+<h3 id="ridge-and-lasso-regression">Ridge and Lasso Regression<a class="headerlink" href="#ridge-and-lasso-regression" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Regularization to reduce overfitting</li>
+<li>More stable estimates with small datasets</li>
+</ul>
+<hr />
+<h2 id="evaluation">Evaluation<a class="headerlink" href="#evaluation" title="Permanent link">&para;</a></h2>
+<p>Model performance was evaluated using:</p>
+<ul>
+<li>R² score</li>
+<li>Coefficient analysis</li>
+</ul>
+<p>Given the limited number of cities, emphasis was placed on interpretability rather than predictive performance.</p>
 
 
 
