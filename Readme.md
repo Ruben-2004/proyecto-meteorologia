@@ -33,9 +33,7 @@ Full documentation at **[Ruben-2004.github.io/proyecto-meteorologia](https://Rub
 
 Data is not included in the repository. To download:
 
-  ```bash
-  # TODO: add your data download instructions
-  ```
+  Go to **[CORINE](https://land.copernicus.eu/en/products/corine-land-cover/clc2018#download)** and choose the .gpkg file.
 
 ## Usage
 
