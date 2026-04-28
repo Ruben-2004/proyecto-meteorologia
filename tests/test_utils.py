@@ -477,6 +477,7 @@ class TestPlotUHI:
 class TestDecomposition:
     def test_decompose(self):
         from datetime import datetime
+
         start = datetime(2018, 1, 1)
         end = datetime(2022, 12, 31, 23, 59)
         decomposition(start, end)
