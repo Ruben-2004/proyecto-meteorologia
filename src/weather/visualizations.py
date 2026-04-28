@@ -11,9 +11,7 @@ def plot_uhi(df: list[pl.DataFrame], ciudades: list[str]) -> None:
         plt.show()
 
 
-def plot_day_night(dictionary: dict, ciudades: list[str]) -> None:
-    dictionary["ciudad"] = ciudades
-    df = pd.DataFrame(dictionary).drop("uhi_mes")
+def plot_day_night(df: pd.DataFrame) -> None:
     df.set_index("ciudad").plot(kind="bar")
     plt.savefig("Uhi_dia_noche")
     plt.show()

@@ -1,10 +1,22 @@
 import geopandas as gpd
 import pandas as pd
+from shapely.geometry import Point
 
 
-def create_buffers(buffers: gpd.GeoDataFrame, radius: int = 5000) -> gpd.GeoDataFrame:
-    buffers["geometry"] = buffers.buffer(5000)
-    return buffers
+def create_buffers(
+    puntos: list[Point], ciudades: list[str], radius: int = 5000
+) -> gpd.GeoDataFrame:
+    gdf_points = gpd.GeoDataFrame(
+        {
+            "ciudad": ciudades,
+            "geometry": [Point(punto.longitude, punto.latitude) for punto in puntos],
+        },
+        crs="EPSG:4326",
+    )
+
+    gdf_points = gdf_points.to_crs(3035)
+    gdf_points["geometry"] = gdf_points.buffer(radius)
+    return gdf_points
 
 
 def intersect_land(
@@ -41,5 +53,7 @@ def land_use_percentage(gdf: gpd.GeoDataFrame) -> pd.DataFrame:
     ).fillna(0)
 
     df_final.loc["Tenerife"] = [0, 100, 0, 0]
+
+    df_final = df_final.reset_index()
 
     return df_final

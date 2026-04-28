@@ -26,5 +26,5 @@ def preprocess(df: pl.DataFrame) -> pl.DataFrame:
     return df
 
 
-def serie_a_polars(df: pd.Series) -> pl.DataFrame:
+def serie_to_polars(df: pd.Series) -> pl.DataFrame:
     return pl.from_pandas(df.to_frame(name="temp").reset_index())

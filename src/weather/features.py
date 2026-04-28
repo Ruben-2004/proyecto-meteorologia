@@ -13,6 +13,7 @@ def build_final_df(
     puntos: list[Point],
     urbanas_pl: list[pl.DataFrame],
     rurales_pl: list[pl.DataFrame],
+    land_use: pd.DataFrame,
 ) -> pd.DataFrame:
     resultados = []
     for uhi, ciudad, poblacion, alt_urb, alt_rur, point, temp_urb, temp_rur in zip(
@@ -42,4 +43,8 @@ def build_final_df(
             }
         )
 
-    return pd.DataFrame(resultados)
+    df_res = pd.DataFrame(resultados)
+
+    df_final = df_res.merge(pd.DataFrame(land_use))
+
+    return df_final

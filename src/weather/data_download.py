@@ -27,7 +27,7 @@ def get_meteostat(
 
 
 def get_corine(
-    path: str = "data/U2018_CLC2018_V2020_20u1.gpkg", crs: int = 4326
+    path: str = "data/U2018_CLC2018_V2020_20u1.gpkg", crs: int = 3035
 ) -> gpd.GeoDataFrame:
 
     transformer = Transformer.from_crs("EPSG:4326", "EPSG:3035", always_xy=True)
@@ -38,7 +38,7 @@ def get_corine(
     bbox_3035 = (xmin, ymin, xmax, ymax)
 
     clc = gpd.read_file(
-        "path",
+        path,
         layer="U2018_CLC2018_V2020_20u1",
         bbox=bbox_3035,
         columns=["Code_18", "geometry"],
