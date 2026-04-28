@@ -28,6 +28,8 @@ theme:
 nav:
   - Home: index.md
   - Analysis: analysis.md
+  - Methodology: methodology.md
+  - Results: results.md
 
 markdown_extensions:
   - admonition
