@@ -3,20 +3,39 @@ import polars as pl
 
 def calcular_uhi_pl(urb: pl.DataFrame, rur: pl.DataFrame) -> pl.DataFrame:
     """
-    Calcula el Urban Heat Island (UHI) alineando dos series temporales.
+    Compute the Urban Heat Island (UHI) effect using Polars DataFrames.
 
-    Parámetros
+    Parameters
     ----------
     urb : pl.DataFrame
-        DataFrame con columnas ["time", "temp"] (estación urbana)
+        Urban temperature data with columns:
+        - 'time': datetime
+        - 'temp': temperature values
     rur : pl.DataFrame
-        DataFrame con columnas ["time", "temp"] (estación rural)
+        Rural temperature data with columns:
+        - 'time': datetime
+        - 'temp': temperature values
 
     Returns
     -------
     pl.DataFrame
-        DataFrame con columnas:
-        ["time", "temp_urb", "temp_rur", "uhi"]
+        DataFrame containing:
+        - 'time': datetime
+        - 'uhi': computed UHI (temp_urb - temp_rur)
+
+    Raises
+    ------
+    ValueError
+        If required columns are missing or inputs are invalid.
+
+    Notes
+    -----
+    The function performs:
+    - Inner join on 'time' to align both datasets
+    - Column renaming to avoid conflicts
+    - UHI computation as a new column
+
+    Only timestamps present in both datasets are retained.
     """
 
     # Renombrar columnas para evitar conflictos
@@ -39,8 +58,35 @@ def calcular_uhi_pl(urb: pl.DataFrame, rur: pl.DataFrame) -> pl.DataFrame:
 
 def resumen_completo_uhi(df: pl.DataFrame) -> dict:
     """
-    Calcula métricas completas del UHI a partir de un dataframe con:
-    ["time", "temp_urb", "temp_rur", "uhi"]
+    Compute summary statistics of the UHI time series.
+
+    Parameters
+    ----------
+    df : pl.DataFrame
+        DataFrame containing:
+        - 'time': datetime
+        - 'uhi': UHI values
+
+    Returns
+    -------
+    Dict[str, float]
+        Dictionary with:
+        - 'uhi_medio': mean UHI
+        - 'uhi_dia': mean UHI during daytime
+        - 'uhi_noche': mean UHI during nighttime
+
+    Raises
+    ------
+    ValueError
+        If required columns are missing.
+
+    Notes
+    -----
+    Daytime and nighttime are defined based on hour:
+    - Day: 10:00 - 18:00
+    - Night: otherwise
+
+    This split can be adjusted depending on the study.
     """
 
     # UHI medio total

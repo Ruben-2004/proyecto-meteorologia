@@ -11,7 +11,38 @@ ms.config.block_large_requests = False
 def get_meteostat(
     start: datetime = datetime(2010, 1, 1),
     end: datetime = datetime(2022, 12, 31, 23, 59),
-) -> tuple[list[pd.Series]]:
+) -> tuple[list[pd.Series], list[pd.Series]]:
+    """
+    Download hourly temperature data from Meteostat for multiple locations.
+
+    Parameters
+    ----------
+        List of Meteostat Point objects representing locations.
+    start : datetime
+        Start date.
+    end : datetime
+        End date.
+
+    Returns
+    -------
+    Tuple[List[pd.Series], List[pd.Series]]
+        Two lists:
+        - Urban station temperature series
+        - Rural station temperature series
+
+    Raises
+    ------
+    ValueError
+        If the date format is invalid.
+    RuntimeError
+        If data retrieval fails.
+
+    Notes
+    -----
+    This function assumes that for each point, both an urban and a rural
+    station are available. Returned data are typically pandas Series
+    indexed by datetime.
+    """
 
     urbanas = []
     rurales = []
@@ -29,6 +60,33 @@ def get_meteostat(
 def get_corine(
     path: str = "data/U2018_CLC2018_V2020_20u1.gpkg", crs: int = 3035
 ) -> gpd.GeoDataFrame:
+    """
+    Load CORINE Land Cover data from a file.
+
+    Parameters
+    ----------
+    path : str
+        Path to the CORINE file (e.g., .gpkg).
+    crs : int | None, optional
+        Proyection to use. If None, the default crs is used.
+
+    Returns
+    -------
+    gpd.GeoDataFrame
+        GeoDataFrame containing CORINE land use polygons with attributes.
+
+    Raises
+    ------
+    FileNotFoundError
+        If the file does not exist.
+    ValueError
+        If the file cannot be read or contains no valid layers.
+
+    Notes
+    -----
+    The dataset is typically large, so it is recommended to use bounding
+    boxes or filters to limit memory usage.
+    """
 
     transformer = Transformer.from_crs("EPSG:4326", "EPSG:3035", always_xy=True)
 
