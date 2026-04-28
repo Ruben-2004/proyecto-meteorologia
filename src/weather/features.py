@@ -1,6 +1,7 @@
 import pandas as pd
 import polars as pl
 from meteostat import Point
+
 from weather.uhi_calculation import resumen_completo_uhi
 
 
