@@ -5,7 +5,7 @@ import polars as pl
 import pytest
 from shapely.geometry import Point
 
-from src.weather.data_download import get_meteostat, get_corine
+from src.weather.data_download import get_corine, get_meteostat
 from src.weather.features import build_final_df
 from src.weather.land_use import (
     classify_land,
@@ -15,7 +15,13 @@ from src.weather.land_use import (
 from src.weather.models import prepare_data, train_models
 from src.weather.preprocessing import preprocess, serie_to_polars
 from src.weather.uhi_calculation import calcular_uhi_pl, resumen_completo_uhi
-from src.weather.visualizations import plot_correlation, plot_day_night, plot_uhi, decomposition
+from src.weather.visualizations import (
+    decomposition,
+    plot_correlation,
+    plot_day_night,
+    plot_uhi,
+)
+
 
 class TestGetCorine:
     def test_corine(self):
