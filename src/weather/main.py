@@ -10,7 +10,7 @@ from land_use import classify_land, create_buffers, intersect_land, land_use_per
 from models import prepare_data, train_models
 from preprocessing import preprocess, serie_to_polars
 from uhi_calculation import calcular_uhi_pl, resumen_completo_uhi
-from visualizations import plot_correlation, plot_day_night, plot_uhi
+from visualizations import decomposition, plot_correlation, plot_day_night, plot_uhi
 
 # ------------------------
 
@@ -51,7 +51,7 @@ def main():
         point_cor,
         point_san,
         point_tnf,
-    ]  # (lat, lon)
+    ]
     start = datetime(2010, 1, 1)
     end = datetime(2022, 12, 31, 23, 59)
 
@@ -168,8 +168,12 @@ def main():
 
     print("📊 Generating plots...")
 
+    start = datetime(2020, 1, 1)
+    end = datetime(2022, 12, 31, 23, 59)
+
     plot_uhi(uhis, ciudades)
     plot_day_night(uhi_df)
+    decomposition(start, end)
     plot_correlation(df_final)
 
     print("✅ Pipeline completed successfully!")

@@ -1,8 +1,7 @@
 import pandas as pd
 import polars as pl
 from meteostat import Point
-
-from weather.uhi_calculation import resumen_completo_uhi
+from src.weather.uhi_calculation import resumen_completo_uhi
 
 
 def build_final_df(

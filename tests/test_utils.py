@@ -5,7 +5,7 @@ import polars as pl
 import pytest
 from shapely.geometry import Point
 
-from src.weather.data_download import get_meteostat
+from src.weather.data_download import get_meteostat, get_corine
 from src.weather.features import build_final_df
 from src.weather.land_use import (
     classify_land,
@@ -15,16 +15,16 @@ from src.weather.land_use import (
 from src.weather.models import prepare_data, train_models
 from src.weather.preprocessing import preprocess, serie_to_polars
 from src.weather.uhi_calculation import calcular_uhi_pl, resumen_completo_uhi
-from src.weather.visualizations import plot_correlation, plot_day_night, plot_uhi
+from src.weather.visualizations import plot_correlation, plot_day_night, plot_uhi, decomposition
 
-'''class TestGetCorine:
+class TestGetCorine:
     def test_corine(self):
 
         result = get_corine()
 
         assert result is not None, "Dataset not imported"
         assert len(result) == 284222, "Dataset not imported correctly"
-        assert "geometry" in result.columns, "Geometry not imported correctly"'''
+        assert "geometry" in result.columns, "Geometry not imported correctly"
 
 
 class TestGetMeteostat:
@@ -466,3 +466,14 @@ class TestPlotUHI:
 
         with pytest.raises(Exception):
             plot_uhi(df, "TestCity")
+
+
+class TestDecomposition:
+    def test_decompose(self):
+        from datetime import datetime
+        start = datetime(2018, 1, 1)
+        end = datetime(2022, 12, 31, 23, 59)
+        decomposition(start, end)
+
+        assert plt.gcf() is not None
+        plt.close()

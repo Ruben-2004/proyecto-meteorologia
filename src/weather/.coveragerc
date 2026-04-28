@@ -1,7 +1,0 @@
-[run]
-omit =
-    src/weather/main.py
-
-[report]
-omit =
-    src/weather/main.py
