@@ -5,7 +5,7 @@ import seaborn as sns
 
 
 def plot_uhi(df: list[pl.DataFrame], ciudades: list[str]) -> None:
-    for i in range(8):
+    for i in range(len(df)):
         plt.plot(df[i]["uhi"])
         plt.title(f"UHI {ciudades[i]}")
         plt.show()

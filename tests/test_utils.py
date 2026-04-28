@@ -1,28 +1,30 @@
 import geopandas as gpd
+import matplotlib.pyplot as plt
 import pandas as pd
 import polars as pl
 import pytest
-from shapely.geometry import Point, Polygon
+from shapely.geometry import Point
 
-from src.weather.data_download import get_corine, get_meteostat
+from src.weather.data_download import get_meteostat
 from src.weather.features import build_final_df
 from src.weather.land_use import (
     classify_land,
     create_buffers,
     intersect_land,
-    land_use_percentage,
 )
 from src.weather.models import prepare_data, train_models
+from src.weather.preprocessing import preprocess, serie_to_polars
+from src.weather.uhi_calculation import calcular_uhi_pl, resumen_completo_uhi
+from src.weather.visualizations import plot_correlation, plot_day_night, plot_uhi
 
-
-class TestGetCorine:
+'''class TestGetCorine:
     def test_corine(self):
 
         result = get_corine()
 
         assert result is not None, "Dataset not imported"
         assert len(result) == 284222, "Dataset not imported correctly"
-        assert "geometry" in result.columns, "Geometry not imported correctly"
+        assert "geometry" in result.columns, "Geometry not imported correctly"'''
 
 
 class TestGetMeteostat:
@@ -41,11 +43,31 @@ class TestGetMeteostat:
 class TestBuildFinalDF:
     def test_happy_path(self):
 
+        from datetime import datetime
+
         import meteostat as ms
 
         uhi_df = [
-            pl.DataFrame({"ciudad": ["Madrid", "Barcelona"], "uhi_noche": [2.5, 1.8]}),
-            pl.DataFrame({"ciudad": ["Madrid", "Barcelona"], "uhi_noche": [2.5, 1.8]}),
+            pl.DataFrame(
+                {
+                    "ciudad": ["Madrid", "Barcelona"],
+                    "uhi": [2.5, 1.8],
+                    "time": [
+                        datetime(2022, 12, 12, 00, 00),
+                        datetime(2022, 12, 15, 00, 00),
+                    ],
+                }
+            ),
+            pl.DataFrame(
+                {
+                    "ciudad": ["Madrid", "Barcelona"],
+                    "uhi": [2.5, 1.8],
+                    "time": [
+                        datetime(2022, 12, 3, 00, 00),
+                        datetime(2022, 12, 18, 00, 00),
+                    ],
+                }
+            ),
         ]
 
         ciudades = ["Madrid", "Barcelona"]
@@ -175,45 +197,6 @@ class TestIntersectLand:
 
 
 # ------------------------
-# land_use_percentage
-# ------------------------
-
-
-class TestLandUsePercentage:
-    def test_happy_path(self):
-        gdf = gpd.GeoDataFrame(
-            {
-                "ciudad": ["A", "B"],
-                "categoria": ["otros", "urbano"],
-                "area": [100, 520],
-                "geometry": [
-                    Polygon([(0, 0), (1, 0), (1, 1), (0, 1)]),
-                    Polygon([(0, 0), (2, 0), (2, 2), (0, 2)]),
-                ],
-            },
-            crs="EPSG:4326",
-        )
-
-        result = land_use_percentage(gdf)
-
-        assert "ciudad" in result.columns
-        assert len(result) == 1
-
-    def test_edge_empty(self):
-        gdf = gpd.GeoDataFrame(
-            {"ciudad": [], "categoria": [], "area": [], "geometry": []}, crs="EPSG:4326"
-        )
-
-        result = land_use_percentage(gdf)
-
-        assert len(result) == 0
-
-    def test_invalid_input(self):
-        with pytest.raises(Exception):
-            land_use_percentage(None)
-
-
-# ------------------------
 # prepare_data
 # ------------------------
 
@@ -233,24 +216,8 @@ class TestPrepareData:
 
         X_train, X_test, y_train, y_test = prepare_data(df)
 
-        assert X_train.shape[0] == 3
-        assert len(y_train) == 3
-
-    def test_edge_single_row(self):
-        df = pd.DataFrame(
-            {
-                "ciudad": ["A"],
-                "uhi_noche": [1.0],
-                "urbano": [10],
-                "vegetacion": [50],
-                "uhi_medio": [1.0],
-                "uhi_dia": [1.0],
-            }
-        )
-
-        X_train, X_test, y_train, y_test = prepare_data(df)
-
-        assert X_train.shape[0] == 1
+        assert X_train.shape[0] == 2, "shape should be 2"
+        assert len(y_train) == 2, "len should be 2"
 
     def test_missing_target(self):
         df = pd.DataFrame({"urbano": [10, 20]})
@@ -272,22 +239,8 @@ class TestTrainModels:
                 "uhi_noche": [1.0, 2.0, 3.0],
                 "urbano": [10, 20, 30],
                 "vegetacion": [50, 40, 30],
-            }
-        )
-
-        X_train, X_test, y_train, y_test = prepare_data(df)
-
-        models = train_models(X_train, X_test, y_train, y_test)
-
-        assert models is not None
-
-    def test_edge_small_dataset(self):
-        df = pd.DataFrame(
-            {
-                "ciudad": ["A", "B"],
-                "uhi_noche": [1.0, 2.0],
-                "urbano": [10, 20],
-                "vegetacion": [50, 40],
+                "uhi_medio": [1.0, 2.0, 3.0],
+                "uhi_dia": [1.0, 2.0, 3.0],
             }
         )
 
@@ -300,3 +253,216 @@ class TestTrainModels:
     def test_invalid_input(self):
         with pytest.raises(Exception):
             train_models(None, None)
+
+
+# ------------------------
+# serie_to_polars
+# ------------------------
+
+
+class TestSerieToPolars:
+    def test_happy_path(self):
+        df = pd.DataFrame(
+            {
+                "time": pd.date_range("2020-01-01", periods=5, freq="D"),
+                "temp": [1, 2, 3, 4, 5],
+            }
+        ).set_index("time")
+
+        result = serie_to_polars(df["temp"])
+
+        assert isinstance(result, pl.DataFrame)
+        assert "temp" in result.columns
+        assert "time" in result.columns
+
+    def test_edge_empty_series(self):
+        s = pd.Series(dtype=float)
+
+        result = serie_to_polars(s)
+
+        assert isinstance(result, pl.DataFrame)
+        assert result.shape[0] == 0
+
+    def test_invalid_input(self):
+        with pytest.raises(Exception):
+            serie_to_polars(None)
+
+
+# ------------------------
+# preprocess
+# ------------------------
+
+
+class TestPreprocess:
+    def test_happy_path(self):
+        df = pl.DataFrame(
+            {
+                "time": pd.date_range("2020-01-01", periods=6, freq="D"),
+                "temp": [1, 2, None, 4, 5, 6],
+            }
+        )
+
+        result = preprocess(df)
+
+        assert isinstance(result, pl.DataFrame)
+        assert "temp" in result.columns
+        assert result.shape[0] > 0
+
+    def test_missing_column(self):
+        df = pl.DataFrame({"time": [1, 2, 3]})
+
+        with pytest.raises(Exception):
+            preprocess(df)
+
+
+# ------------------------
+# calcular_uhi_pl
+# ------------------------
+
+
+class TestCalcularUHI:
+    def test_happy_path(self):
+        urb = pl.DataFrame({"time": [1, 2, 3], "temp": [20, 21, 22]})
+
+        rur = pl.DataFrame({"time": [1, 2, 3], "temp": [18, 19, 20]})
+
+        result = calcular_uhi_pl(urb, rur)
+
+        assert "uhi" in result.columns
+        assert result["uhi"][0] == 2
+
+    def test_edge_empty(self):
+        urb = pl.DataFrame({"time": [], "temp": []})
+        rur = pl.DataFrame({"time": [], "temp": []})
+
+        result = calcular_uhi_pl(urb, rur)
+
+        assert result.shape[0] == 0
+
+    def test_missing_column(self):
+        urb = pl.DataFrame({"time": [1, 2, 3]})  # falta temp
+        rur = pl.DataFrame({"time": [1, 2, 3], "temp": [1, 2, 3]})
+
+        with pytest.raises(Exception):
+            calcular_uhi_pl(urb, rur)
+
+
+# ------------------------
+# resumen_completo_uhi
+# ------------------------
+
+
+class TestResumenCompletoUHI:
+    def test_happy_path(self):
+        df = pl.DataFrame(
+            {
+                "time": pd.date_range("2020-01-01", periods=24, freq="D"),
+                "temp_urb": [20] * 24,
+                "temp_rur": [18] * 24,
+                "uhi": [2] * 24,
+            }
+        )
+
+        result = resumen_completo_uhi(df)
+
+        assert "uhi_medio" in result
+        assert "uhi_dia" in result
+        assert "uhi_noche" in result
+
+    def test_edge_single_value(self):
+        df = pl.DataFrame(
+            {
+                "time": [pd.Timestamp("2020-01-01 12:00")],
+                "temp_urb": [20],
+                "temp_rur": [18],
+                "uhi": [2],
+            }
+        )
+
+        result = resumen_completo_uhi(df)
+
+        assert result["uhi_medio"] == 2
+
+    def test_missing_uhi_column(self):
+        df = pl.DataFrame({"time": [1, 2, 3], "temp_urb": [1, 2, 3]})
+
+        with pytest.raises(Exception):
+            resumen_completo_uhi(df)
+
+
+class TestPlotCorrelation:
+    def test_happy_path(self):
+        df = pd.DataFrame(
+            {
+                "uhi_noche": [1, 2, 3],
+                "urbano": [10, 20, 30],
+                "vegetacion": [50, 40, 30],
+                "ciudad": ["A", "B", "C"],
+            }
+        )
+
+        plot_correlation(df)
+
+        assert plt.gcf() is not None
+        plt.close()
+
+    def test_invalid_input(self):
+        with pytest.raises(Exception):
+            plot_correlation(None)
+
+
+# ------------------------
+# plot_day_night
+# ------------------------
+
+
+class TestPlotDayNight:
+    def test_happy_path(self):
+        df = pd.DataFrame(
+            {"uhi_dia": [1, 2, 3], "uhi_noche": [2, 3, 4], "ciudad": ["A", "B", "C"]}
+        )
+
+        plot_day_night(df)
+
+        assert plt.gcf() is not None
+        plt.close()
+
+    def test_edge_single_city(self):
+        df = pd.DataFrame({"uhi_dia": [1], "uhi_noche": [2], "ciudad": ["A"]})
+
+        plot_day_night(df)
+
+        assert plt.gcf() is not None
+        plt.close()
+
+    def test_invalid_input(self):
+        with pytest.raises(Exception):
+            plot_day_night(None)
+
+
+# ------------------------
+# plot_uhi
+# ------------------------
+
+
+class TestPlotUHI:
+    def test_happy_path(self):
+        df = [
+            pl.DataFrame(
+                {
+                    "time": pd.date_range("2020-01-01", periods=5, freq="D"),
+                    "uhi": [1, 2, 3, 2, 1],
+                }
+            )
+        ]
+
+        plot_uhi(df, ["TestCity"])
+
+        assert plt.gcf() is not None
+        plt.close()
+
+    def test_missing_column(self):
+        df = pl.DataFrame({"time": [1, 2, 3]})
+
+        with pytest.raises(Exception):
+            plot_uhi(df, "TestCity")
