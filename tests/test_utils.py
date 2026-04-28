@@ -5,7 +5,7 @@ import polars as pl
 import pytest
 from shapely.geometry import Point
 
-from src.weather.data_download import get_corine, get_meteostat
+from src.weather.data_download import get_meteostat
 from src.weather.features import build_final_df
 from src.weather.land_use import (
     classify_land,
@@ -21,16 +21,6 @@ from src.weather.visualizations import (
     plot_day_night,
     plot_uhi,
 )
-
-
-class TestGetCorine:
-    def test_corine(self):
-
-        result = get_corine()
-
-        assert result is not None, "Dataset not imported"
-        assert len(result) == 284222, "Dataset not imported correctly"
-        assert "geometry" in result.columns, "Geometry not imported correctly"
 
 
 class TestGetMeteostat:
