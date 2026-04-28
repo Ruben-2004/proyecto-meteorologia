@@ -1,32 +1,64 @@
 # 🌡️ Urban Heat Island Analysis in Spain
 
-This project analyses the **Urban Heat Island (UHI)** effect in several Spanish cities using meteorological data and land use information.
+This project investigates the **Urban Heat Island (UHI)** effect across several Spanish cities by combining meteorological data with land use information. The UHI phenomenon refers to the temperature difference between urban and rural environments, typically caused by human activity, artificial surfaces, and reduced vegetation.
 
 ## 📌 Objectives
 
-- Compute UHI from urban and rural stations
-- Analyse differences between day and night
-- Study the influence of land use (CORINE)
-- Build regression models to explain UHI
+The main objectives of this project are:
+
+- To compute the Urban Heat Island (UHI) intensity using hourly temperature data
+- To compare UHI behaviour during daytime and nighttime
+- To analyse the relationship between land use and temperature differences
+- To evaluate the impact of urbanization and vegetation on UHI
+- To build statistical models that explain UHI variability across cities
+
+## 🌍 Study Area
+
+The analysis focuses on a selection of Spanish cities representing different climatic and geographical conditions, including:
+
+- Madrid
+- Barcelona
+- Sevilla
+- Zaragoza
+- Bilbao
+- A Coruña
+- Santander
+- Tenerife
+
+This diversity allows for a more comprehensive understanding of how UHI behaves under different environmental conditions.
 
 ## 🗂️ Project Structure
 
-- `src/`: source code
-- `tests/`: unit tests
-- `docs/`: documentation
+The repository is organised as follows:
 
-## 🚀 Technologies
+- `src/`: Core implementation of the project, including data processing, UHI computation, modeling, and visualization
+- `tests/`: Unit tests ensuring correctness and robustness of the code
+- `docs/`: Project documentation built using MkDocs
+- `data/`: Data files used in the analysis
 
-- Python
-- Polars / Pandas
-- GeoPandas
-- Scikit-learn
-- Meteostat
+## ⚙️ Technologies Used
 
-## 📊 Results Overview
+This project relies on several modern Python tools:
 
-- UHI is generally higher at night
-- Urban areas show stronger heat retention
-- Vegetation reduces UHI
+- **Pandas / Polars** for data manipulation
+- **GeoPandas** for spatial analysis
+- **Meteostat** for meteorological data retrieval
+- **Scikit-learn** for regression modeling
+- **Matplotlib / Seaborn** for visualization
 
-👉 See [Analysis](analysis.md) for more details.
+## 📊 Key Insights
+
+Preliminary results suggest that:
+
+- UHI is consistently positive across cities
+- The effect is stronger during nighttime due to heat retention
+- Urban areas significantly increase local temperatures
+- Vegetation plays a mitigating role in reducing UHI intensity
+
+## 📚 Documentation
+
+For a detailed explanation of the methodology and results:
+
+- 👉 [Methodology](methodology.md)
+- 👉 [Analysis](analysis.md)
+- 👉 [Results](results.md)

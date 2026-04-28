@@ -2,35 +2,78 @@
 
 ## 🌡️ UHI Computation
 
-The Urban Heat Island (UHI) is defined as:
+The Urban Heat Island (UHI) effect is defined as the temperature difference between urban and rural environments:
 
-UHI = T_urban - T_rural
+UHI = T_urban − T_rural
 
-The results show that:
+Using hourly temperature data from Meteostat, UHI values were computed for each city over the study period. The resulting time series allow for both temporal and statistical analysis.
 
-- UHI is consistently positive
-- Stronger during nighttime
+### Observations
 
-## 🌙 Day vs Night
+- UHI values are generally positive, confirming the presence of the phenomenon
+- The magnitude varies depending on the city and climatic conditions
+- Seasonal patterns are observed, with stronger effects in summer months
 
-Nighttime UHI is significantly higher due to:
-- Heat retention in urban materials
-- Reduced convection
+---
 
-## 🌍 Land Use Impact
+## 🌙 Day vs Night Behaviour
 
-Using CORINE Land Cover:
+A key aspect of the analysis is the distinction between daytime and nighttime UHI.
 
-- Higher % urban → higher UHI
-- Higher vegetation → lower UHI
+### Findings
 
-## 📈 Regression Results
+- Nighttime UHI is consistently higher than daytime UHI
+- This is due to:
+  - Heat storage in urban materials (asphalt, concrete)
+  - Reduced radiative cooling
+  - Lower wind speeds and atmospheric mixing
 
-Linear models show:
+### Implications
 
-- Positive coefficient for urban areas
-- Negative coefficient for vegetation
+This suggests that urban areas retain heat more efficiently than rural areas, particularly after sunset, which has important consequences for energy consumption and human comfort.
+
+---
+
+## 🌍 Land Use Analysis
+
+Land use data from the CORINE Land Cover dataset was used to quantify the composition of the area surrounding each meteorological station.
+
+### Method
+
+- Buffers of 5 km were created around each station
+- Spatial intersections with CORINE polygons were computed
+- Land use categories were aggregated into:
+  - Urban
+  - Vegetation
+  - Agricultural
+  - Other
+
+### Results
+
+- Cities with higher percentages of urban land show stronger UHI effects
+- Vegetation has a clear cooling effect
+- Agricultural areas show intermediate behaviour
+
+---
+
+## 📈 Correlation Analysis
+
+Correlation matrices were computed to explore relationships between variables.
+
+### Key relationships
+
+- Positive correlation between % urban and UHI
+- Negative correlation between % vegetation and UHI
+- Population is often correlated with urbanization
+
+---
 
 ## 🧠 Interpretation
 
-Urbanization increases heat storage, while vegetation mitigates temperature differences.
+The results confirm well-known physical mechanisms:
+
+- Urban materials store and slowly release heat
+- Lack of vegetation reduces evapotranspiration
+- Urban geometry (buildings) affects airflow and radiation
+
+Overall, the analysis supports the hypothesis that land use is a major driver of UHI intensity.
