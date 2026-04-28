@@ -75,6 +75,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#urban-heat-island-analysis-in-spain" class="md-skip">
+          Saltar a contenido
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -259,6 +264,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="." class="md-nav__link md-nav__link--active">
         
@@ -276,6 +301,69 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 Objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗂️ Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technologies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 Technologies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Results Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -308,6 +396,60 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="methodology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methodology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -325,6 +467,60 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 Objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗂️ Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technologies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 Technologies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Results Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -344,11 +540,36 @@
   
 
 
-  <h1>Home</h1>
-
-<p>Proyecto de Metereología: Efecto isla de calor urbana en ciudades españolas</p>
-<p>TODO: Data source and Installation instructions
-Rubén Torres</p>
+<h1 id="urban-heat-island-analysis-in-spain">🌡️ Urban Heat Island Analysis in Spain<a class="headerlink" href="#urban-heat-island-analysis-in-spain" title="Permanent link">&para;</a></h1>
+<p>This project analyses the <strong>Urban Heat Island (UHI)</strong> effect in several Spanish cities using meteorological data and land use information.</p>
+<h2 id="objectives">📌 Objectives<a class="headerlink" href="#objectives" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Compute UHI from urban and rural stations</li>
+<li>Analyse differences between day and night</li>
+<li>Study the influence of land use (CORINE)</li>
+<li>Build regression models to explain UHI</li>
+</ul>
+<h2 id="project-structure">🗂️ Project Structure<a class="headerlink" href="#project-structure" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>src/</code>: source code</li>
+<li><code>tests/</code>: unit tests</li>
+<li><code>docs/</code>: documentation</li>
+</ul>
+<h2 id="technologies">🚀 Technologies<a class="headerlink" href="#technologies" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Python</li>
+<li>Polars / Pandas</li>
+<li>GeoPandas</li>
+<li>Scikit-learn</li>
+<li>Meteostat</li>
+</ul>
+<h2 id="results-overview">📊 Results Overview<a class="headerlink" href="#results-overview" title="Permanent link">&para;</a></h2>
+<ul>
+<li>UHI is generally higher at night</li>
+<li>Urban areas show stronger heat retention</li>
+<li>Vegetation reduces UHI</li>
+</ul>
+<p>👉 See <a href="analysis/">Analysis</a> for more details.</p>
 
 
 
